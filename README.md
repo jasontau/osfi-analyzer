@@ -18,4 +18,21 @@ a. Create a template to display the data as a financial statement
 b. Generate year-specific schema
 c. Parse, record, index and map the raw data to the template
 2. Multiple Mapping
-3. 
+
+## Schema
+1. Tables
+a. Statement
+i. Name (Domestic, Foreign)
+b. Year
+c. Quarter
+d. Company
+i. Name
+ii. Code
+e. Page
+i. Code
+ii. Name
+f. Data
+i. Row
+ii. Column
+iii. Value
+iv. FK for all of the above
