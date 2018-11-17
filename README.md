@@ -1,24 +1,21 @@
-# README
+# Balsam API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Balsam provides a way to query, visualize and analyze financial data for Canadian property and casualty insurers.
 
-Things you may want to cover:
+## Concept
 
-* Ruby version
+There is a wealth of publicly available financial data that has been filed with OSFI. By exposing this data to fast, modern means of analysis it is hoped that new insights into risk management can be found.
 
-* System dependencies
+## Concerns
 
-* Configuration
+- Rails ActiveRecord does not support certain database features like composite keys.
+- As the analysis aspect grows more complex this may impact performance.
+- Must maintain detailed ERDs and documentation on data consumption in case migration to a different backend is necessary.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Roadmap
+1. Single Financial Statement Mapping (60.20 Consolidated Premiums and Claims)
+a. Create a template to display the data as a financial statement
+b. Generate year-specific schema
+c. Parse, record, index and map the raw data to the template
+2. Multiple Mapping
+3. 
