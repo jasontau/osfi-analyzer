@@ -10,6 +10,8 @@ require 'csv'
 
 path = "app/data/"
 
+start = Time.now
+
 # helpers
 def fast_insert(insert_model, column, values)
   values -= insert_model.pluck(column)
@@ -137,6 +139,7 @@ def format_data_line(line, schema)
 end
 
 restricted_pages = Page.pluck(:code)
+skip_companies = ["D850"]
 
 data_lines = []
 total_records_searched = 0
@@ -153,11 +156,11 @@ Year.pluck(:year).each { |year|
         File.open(filename).each do |line|
           # only parse lines for set up pages right now
           page = line.slice(9,4)
-          if restricted_pages.include?(page) then
+          company = line.slice(5,4)
+          if restricted_pages.include?(page) && !skip_companies.include?(company) then
             parsed = parse_data_line(line, slice_map)
             formatted = format_data_line(parsed, schema)
             data_lines << formatted
-            break
           end
         end
       end
@@ -165,7 +168,9 @@ Year.pluck(:year).each { |year|
   }
 }
 
-p "TOTAL PARSED DATA LINES: #{data_lines.count} / #{total_records_searched}"
-p data_lines
-
 fast_insert_data(data_lines)
+
+p "TOTAL PARSED DATA LINES: #{data_lines.count} / #{total_records_searched}"
+finish = Time.now
+diff = finish - start
+p "TOTAL TIME TAKEN: #{diff} seconds"
