@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 2018_11_17_145450) do
   end
 
   create_table "data", force: :cascade do |t|
-    t.integer "row", null: false
-    t.integer "column", null: false
-    t.decimal "value", null: false
+    t.integer "row_index", null: false
+    t.integer "column_index", null: false
+    t.decimal "amount", null: false
     t.bigint "statement_id"
     t.bigint "year_id"
     t.bigint "quarter_id"
@@ -39,8 +39,7 @@ ActiveRecord::Schema.define(version: 2018_11_17_145450) do
 
   create_table "pages", force: :cascade do |t|
     t.string "name", null: false
-    t.string "code", null: false
-    t.string "char(4)", null: false
+    t.string "code", limit: 4, null: false
   end
 
   create_table "quarters", force: :cascade do |t|
